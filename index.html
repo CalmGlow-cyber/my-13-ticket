@@ -3,82 +3,167 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#090709">
+<meta name="theme-color" content="#0a090b">
 <title>13 anni di noi</title>
 <style>
-:root{--paper:#fbf6ee;--ink:#2a2227;--gold:#e5c77e;--rose:#c58fa3;--bg:#090709}
+:root{
+  --bg:#0a090b;--bg2:#151014;--paper:#fbf7f1;--ink:#241f23;--muted:#7f737a;
+  --gold:#e7cc89;--rose:#d39aaa;--line:rgba(255,255,255,.12);--glass:rgba(255,255,255,.07)
+}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif}
 body{overscroll-behavior:none}
-body:before{content:"";position:fixed;inset:-12%;background:radial-gradient(circle at 18% 10%,rgba(103,49,73,.30),transparent 30%),radial-gradient(circle at 82% 82%,rgba(77,46,59,.22),transparent 28%),linear-gradient(160deg,#151014 0,#080708 72%);z-index:-2}
-.app{height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;padding:max(9px,env(safe-area-inset-top)) 12px max(9px,env(safe-area-inset-bottom));overflow:hidden}
-.top{width:min(100%,430px);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:42px}
-.brand{min-width:0;font-size:clamp(.56rem,2.3vw,.68rem);letter-spacing:.16em;text-transform:uppercase;color:#efd792;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.music{flex:none;max-width:39vw;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.065);backdrop-filter:blur(16px);color:#fff;border-radius:999px;padding:8px 11px;font-size:.73rem;display:flex;align-items:center;gap:7px;white-space:nowrap;overflow:hidden}.music span{overflow:hidden;text-overflow:ellipsis}.musicDot{width:8px;height:8px;border-radius:50%;background:#71686d;flex:none}.music.on .musicDot{background:#88d9a0;box-shadow:0 0 0 5px rgba(136,217,160,.12)}
-.stage{position:relative;min-height:0;width:100%;overflow:hidden}
-.bookShell{--bw:min(calc(100vw - 28px),390px);position:absolute;left:50%;top:50%;width:var(--bw);height:min(calc(100dvh - 126px),calc(var(--bw) * 1.62),620px);transform:translate(-50%,-50%);perspective:1800px;filter:drop-shadow(0 24px 34px rgba(0,0,0,.46));touch-action:pan-y}
-.bookShell:before{content:"";position:absolute;inset:5px -5px -6px 5px;border-radius:10px 23px 23px 10px;background:linear-gradient(180deg,#d7cabd,#998d83);z-index:-1;opacity:.72}
-.book{position:relative;width:100%;height:100%;transform-style:preserve-3d}
-.page{position:absolute;inset:0;width:100%;height:100%;border-radius:10px 23px 23px 10px;overflow:hidden;background:var(--paper);color:var(--ink);box-shadow:inset 10px 0 24px rgba(76,55,63,.08),0 1px 0 rgba(255,255,255,.72);opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(0,0,0);transform-origin:left center;backface-visibility:hidden;will-change:transform,opacity,filter}
-.page.current{opacity:1;visibility:visible;pointer-events:auto;z-index:3}.page.incoming{opacity:1;visibility:visible;z-index:2}.page.outgoing{opacity:1;visibility:visible;z-index:5}
-.page.turnForward{animation:pageForward .62s cubic-bezier(.22,.78,.18,1) forwards}.page.turnBack{animation:pageBack .62s cubic-bezier(.22,.78,.18,1) forwards}
-.page.turnForward:after,.page.turnBack:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.03),rgba(0,0,0,.24) 68%,rgba(0,0,0,.36));opacity:0;animation:pageShadow .62s ease}
-@keyframes pageForward{0%{transform:translate3d(0,0,0) rotateY(0);filter:brightness(1)}52%{transform:translate3d(-4%,0,0) rotateY(-38deg);filter:brightness(.87)}100%{transform:translate3d(-103%,0,0) rotateY(-8deg);filter:brightness(.92)}}
-@keyframes pageBack{0%{transform:translate3d(-103%,0,0) rotateY(-8deg);filter:brightness(.92)}48%{transform:translate3d(-4%,0,0) rotateY(-38deg);filter:brightness(.88)}100%{transform:translate3d(0,0,0) rotateY(0);filter:brightness(1)}}
-@keyframes pageShadow{0%,100%{opacity:0}50%{opacity:.9}}
-.pageContent{position:relative;width:100%;height:100%;overflow:hidden}.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02) 24%,rgba(0,0,0,.10) 43%,rgba(8,6,8,.76) 71%,rgba(8,6,8,.98) 100%)}
-.copy{position:absolute;left:0;right:0;bottom:0;padding:18px 20px 22px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.72);max-width:100%}.eyebrow{font-size:clamp(.57rem,2.3vw,.66rem);letter-spacing:.16em;text-transform:uppercase;font-weight:800;color:#f2d890}.quote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.2rem,5.15vw,1.7rem);line-height:1.15;margin:7px 0 8px;overflow-wrap:break-word;word-break:normal;hyphens:auto}.note{font-size:clamp(.75rem,3.05vw,.86rem);line-height:1.42;color:#f2e9ee;overflow-wrap:break-word;word-break:normal;hyphens:auto}
-.cover{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;background:radial-gradient(circle at 50% 18%,rgba(229,199,126,.16),transparent 28%),linear-gradient(155deg,#34202b 0,#1b1218 54%,#0d0a0c 100%);color:#fff}.cover:before{content:"";position:absolute;inset:13px;border:1px solid rgba(255,255,255,.10);border-radius:12px 18px 18px 12px}.coverInner{position:relative;z-index:1;width:100%;max-width:320px}.cover h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(2.65rem,11.3vw,4.55rem);line-height:.91;margin:.16em 0 .22em;letter-spacing:-.03em}.cover p{color:#e4d9df;font-size:clamp(.84rem,3.35vw,.97rem);line-height:1.5;margin:0 auto 17px}.open{border:0;border-radius:999px;padding:13px 17px;background:#fff8ef;color:#271b22;font-weight:800;font-size:clamp(.78rem,3.25vw,.92rem);box-shadow:0 10px 26px rgba(0,0,0,.24)}.open[disabled]{opacity:.56}.hint{font-size:.69rem;color:#ad9fa7;margin-top:13px;line-height:1.4}
-.special{height:100%;padding:22px 23px;background:linear-gradient(145deg,#fffaf3,#eee2d4);overflow:hidden}.specialInner{height:100%;display:flex;flex-direction:column;justify-content:center;min-width:0;max-width:100%}.special .eyebrow{color:#846548;text-shadow:none}.special h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.68rem,6.8vw,2.2rem);line-height:1.04;margin:.22em 0 .34em;overflow-wrap:break-word;word-break:normal;hyphens:auto}.special p{font-size:clamp(.80rem,3.28vw,.94rem);line-height:1.43;color:#62545c;margin:.36em 0;overflow-wrap:break-word;word-break:normal;hyphens:auto}.special .bigQuote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.06rem,4.45vw,1.31rem);line-height:1.34;color:#3d3037;margin:.58em 0;overflow-wrap:break-word;word-break:normal;hyphens:auto}.storyPage h2{font-size:clamp(1.58rem,6.45vw,2.05rem)}.storyPage p{font-size:clamp(.78rem,3.12vw,.91rem)}.storyPage .bigQuote{font-size:clamp(1.01rem,4.2vw,1.24rem)}
-.chips{display:grid;gap:6px;margin-top:6px}.chip{border:1px solid rgba(91,68,52,.12);background:rgba(255,255,255,.58);padding:8px 10px;border-radius:12px;font-size:clamp(.70rem,2.9vw,.82rem);line-height:1.28;overflow-wrap:break-word}
-.gift{height:100%;padding:22px 24px;background:radial-gradient(circle at 50% 15%,rgba(229,199,126,.16),transparent 28%),linear-gradient(160deg,#2c1723,#0d090c);color:#fff;text-align:center;display:flex;flex-direction:column;justify-content:center;overflow:hidden}.gift h2{font-family:Georgia,serif;font-size:clamp(1.85rem,7.4vw,2.4rem);line-height:1.04;margin:.22em 0}.gift p{font-size:clamp(.79rem,3.25vw,.92rem);color:#ddd0d7;line-height:1.44;margin:.38em 0}.ticket{margin-top:12px;padding:15px 14px;background:#fff8ef;color:#302229;border-radius:16px;box-shadow:0 17px 40px rgba(0,0,0,.28)}.ticket b{display:block;font-family:Georgia,serif;font-size:clamp(1.13rem,4.9vw,1.38rem);margin-bottom:6px}.ticket span{font-size:clamp(.72rem,2.95vw,.84rem);color:#6d5c65;line-height:1.34}
-.controls{width:min(100%,430px);margin:0 auto;display:grid;grid-template-columns:46px 1fr 46px;align-items:center;gap:10px;min-height:50px}.nav{height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:#fff;font-size:1.22rem;backdrop-filter:blur(12px)}.nav:disabled{opacity:.23}.progress{text-align:center}.progress b{display:block;font-size:.79rem;font-weight:700}.progress span{font-size:.67rem;color:#91858c}.swipeHint{position:absolute;right:5px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-size:.57rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.34);pointer-events:none;z-index:20}
-.ytHost{position:fixed;width:2px;height:2px;left:0;top:0;opacity:.01;pointer-events:none;z-index:-1;overflow:hidden}.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(10px);padding:9px 13px;border-radius:999px;background:rgba(12,9,11,.86);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.1);font-size:.73rem;color:#fff;opacity:0;pointer-events:none;transition:.25s;z-index:10000}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.confetti{position:fixed;top:-15px;width:7px;height:12px;z-index:5000;animation:fall linear forwards}@keyframes fall{to{transform:translate3d(var(--dx),110vh,0) rotate(720deg);opacity:.12}}
-@media(max-height:730px){.bookShell{height:min(calc(100dvh - 122px),calc(var(--bw) * 1.52))}.special{padding:18px 20px}.special h2{font-size:1.54rem}.special p{font-size:.76rem;line-height:1.36}.special .bigQuote{font-size:.98rem;line-height:1.28;margin:.45em 0}.chip{padding:6px 9px;font-size:.68rem}.gift{padding:18px 20px}.gift h2{font-size:1.72rem}.gift p{font-size:.75rem}.ticket{padding:12px}.ticket b{font-size:1.08rem}}
-@media(max-width:360px){.bookShell{--bw:calc(100vw - 24px)}.brand{letter-spacing:.1em}.copy{padding:16px 17px 19px}.quote{font-size:1.14rem}.note{font-size:.72rem}.special{padding:18px 19px}.storyPage h2{font-size:1.48rem}.storyPage .bigQuote{font-size:.95rem}}
+body:before{content:"";position:fixed;inset:-15%;z-index:-3;background:radial-gradient(circle at 18% 8%,rgba(122,62,86,.28),transparent 30%),radial-gradient(circle at 82% 78%,rgba(82,49,62,.22),transparent 30%),linear-gradient(160deg,#171116 0,#0a090b 70%)}
+body:after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(circle at 50% 50%,transparent 35%,rgba(0,0,0,.28) 100%)}
+.app{height:100dvh;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:8px;padding:max(9px,env(safe-area-inset-top)) 12px max(10px,env(safe-area-inset-bottom));overflow:hidden}
+.header,.footer{width:min(100%,520px);margin:0 auto}
+.header{min-height:44px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{min-width:0;color:#ead08e;font-size:clamp(.55rem,2.35vw,.68rem);letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music{flex:none;max-width:43vw;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#fff;border-radius:999px;padding:8px 11px;display:flex;align-items:center;gap:7px;font-size:.72rem;white-space:nowrap;overflow:hidden}
+.music span{overflow:hidden;text-overflow:ellipsis}.dot{width:8px;height:8px;border-radius:50%;background:#756c71;flex:none}.music.on .dot{background:#8ee0a2;box-shadow:0 0 0 5px rgba(142,224,162,.12)}
+.stage{position:relative;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.book-wrap{position:relative;width:min(92vw,430px);height:min(74dvh,650px);display:flex;align-items:center;justify-content:center;margin:auto}
+#book{width:min(88vw,400px);height:min(70dvh,610px);margin:auto!important}
+.book-page{background:var(--paper);color:var(--ink);overflow:hidden;border-radius:8px 22px 22px 8px;box-shadow:inset 12px 0 24px rgba(64,45,54,.08)}
+.book-page[data-density="hard"]{background:#20171d}
+.page-inner{position:relative;width:100%;height:100%;overflow:hidden}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.photoShade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02) 24%,rgba(0,0,0,.08) 42%,rgba(7,6,7,.30) 60%,rgba(7,6,7,.84) 82%,rgba(7,6,7,.98) 100%)}
+.photoCopy{position:absolute;left:0;right:0;bottom:0;padding:18px 19px 20px;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.68)}
+.eyebrow{font-size:clamp(.55rem,2.25vw,.65rem);letter-spacing:.17em;text-transform:uppercase;font-weight:800;color:#f0d48d}
+.quote{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.18rem,5vw,1.62rem);line-height:1.15;margin:7px 0 8px;overflow-wrap:break-word;hyphens:auto}
+.note{font-size:clamp(.73rem,3vw,.84rem);line-height:1.42;color:#f1e9ed;overflow-wrap:break-word;hyphens:auto}
+.cover{height:100%;display:grid;place-items:center;text-align:center;padding:28px;background:radial-gradient(circle at 50% 16%,rgba(231,204,137,.16),transparent 29%),linear-gradient(155deg,#38222e 0,#1d1419 55%,#0f0b0d 100%);color:#fff;position:relative}
+.cover:before{content:"";position:absolute;inset:13px;border:1px solid rgba(255,255,255,.10);border-radius:11px 18px 18px 11px}
+.cover-inner{position:relative;z-index:1;width:100%;max-width:310px}
+.cover h1{font-family:Georgia,serif;font-weight:500;font-size:clamp(2.7rem,11.2vw,4.5rem);line-height:.9;margin:.16em 0 .22em;letter-spacing:-.035em}
+.cover p{font-size:clamp(.82rem,3.3vw,.96rem);line-height:1.5;color:#e4d8df;margin:0 auto 18px}
+.openBtn{border:0;border-radius:999px;padding:13px 18px;background:#fff8ef;color:#281c23;font-size:clamp(.77rem,3.2vw,.91rem);font-weight:800;box-shadow:0 12px 30px rgba(0,0,0,.26)}
+.hint{margin-top:13px;color:#b0a3aa;font-size:.68rem;line-height:1.42}
+.textPage{height:100%;padding:22px 23px;background:linear-gradient(145deg,#fffaf3,#eee2d5);display:flex;align-items:center;color:var(--ink)}
+.textInner{width:100%;max-width:100%;min-width:0}
+.textPage .eyebrow{color:#8a684d;text-shadow:none}.textPage h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.55rem,6.2vw,2.02rem);line-height:1.05;margin:.25em 0 .38em;overflow-wrap:break-word;hyphens:auto}
+.textPage p{font-size:clamp(.76rem,3.08vw,.9rem);line-height:1.42;color:#665760;margin:.4em 0;overflow-wrap:break-word;hyphens:auto}
+.bigQuote{font-family:Georgia,"Times New Roman",serif!important;font-size:clamp(1rem,4.15vw,1.23rem)!important;line-height:1.32!important;color:#3a2f35!important;margin:.58em 0!important}
+.memory-grid{display:grid;gap:7px;margin-top:9px}.memory-pill{padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.62);border:1px solid rgba(91,68,52,.12);font-size:clamp(.69rem,2.85vw,.8rem);line-height:1.28;color:#51464c}
+.gift{height:100%;padding:22px 23px;background:radial-gradient(circle at 50% 14%,rgba(231,204,137,.16),transparent 28%),linear-gradient(160deg,#2b1822,#0e0a0c);display:flex;align-items:center;text-align:center;color:#fff}
+.giftInner{width:100%}.gift h2{font-family:Georgia,serif;font-size:clamp(1.78rem,7.2vw,2.3rem);line-height:1.04;margin:.25em 0}.gift p{font-size:clamp(.76rem,3.1vw,.9rem);line-height:1.44;color:#ddd0d7;margin:.4em 0}
+.ticket{margin:13px 0 0;padding:15px 14px;background:#fff8ef;color:#302229;border-radius:16px;box-shadow:0 16px 42px rgba(0,0,0,.28)}.ticket b{display:block;font-family:Georgia,serif;font-size:clamp(1.1rem,4.8vw,1.34rem);margin-bottom:6px}.ticket span{font-size:clamp(.7rem,2.9vw,.82rem);line-height:1.34;color:#6d5c65}
+.footer{display:grid;grid-template-columns:46px 1fr 46px;align-items:center;gap:10px;min-height:50px}
+.nav{height:46px;border-radius:50%;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#fff;font-size:1.22rem}.nav:disabled{opacity:.24}
+.progress{text-align:center}.progress b{display:block;font-size:.78rem}.progress span{font-size:.67rem;color:#91858c}
+.cornerHint{position:absolute;right:4px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;color:rgba(255,255,255,.36);font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;pointer-events:none;z-index:30}
+.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(10px);padding:9px 13px;border-radius:999px;background:rgba(12,9,11,.88);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.10);font-size:.72rem;color:#fff;opacity:0;pointer-events:none;transition:.25s;z-index:10000}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.confetti{position:fixed;top:-15px;width:7px;height:12px;z-index:5000;animation:fall linear forwards}@keyframes fall{to{transform:translate3d(var(--dx),110vh,0) rotate(720deg);opacity:.12}}
+#ytHost{position:fixed;width:2px;height:2px;left:0;top:0;opacity:.01;pointer-events:none;z-index:-1;overflow:hidden}
+.stf__parent{margin:auto!important;display:flex!important;align-items:center!important;justify-content:center!important}.stf__wrapper{margin:auto!important}.stf__block{box-shadow:0 26px 45px rgba(0,0,0,.42)!important}
+@media(max-height:720px){.book-wrap{height:min(72dvh,570px)}#book{height:min(68dvh,550px)}.textPage{padding:18px 20px}.textPage h2{font-size:1.48rem}.textPage p{font-size:.73rem;line-height:1.34}.bigQuote{font-size:.95rem!important}.memory-grid{gap:5px}.memory-pill{padding:6px 9px;font-size:.66rem}.gift{padding:18px 20px}.gift h2{font-size:1.65rem}.gift p{font-size:.73rem}.ticket{padding:12px}.photoCopy{padding:15px 17px 18px}.quote{font-size:1.12rem}.note{font-size:.7rem}}
+@media(max-width:360px){.book-wrap{width:94vw}#book{width:90vw}.brand{letter-spacing:.1em}.textPage{padding:18px 19px}.textPage h2{font-size:1.42rem}.bigQuote{font-size:.92rem!important}.photoCopy{padding:15px 16px 18px}}
 </style>
 </head>
 <body>
 <div class="app">
-<header class="top"><div class="brand">8 settembre 2013 · 8 settembre 2026</div><button class="music" id="musicBtn"><i class="musicDot"></i><span id="musicText">Carico la nostra canzone…</span></button></header>
-<main class="stage">
-<div class="bookShell" id="bookShell"><div class="book" id="book">
-<section class="page current"><div class="pageContent cover"><div class="coverInner"><div class="eyebrow">Il nostro tredicesimo capitolo</div><h1>13 anni<br>di noi.</h1><p>Non un sito da scorrere.<br>Un libro da sfogliare, pagina dopo pagina.</p><button class="open" id="openBtn" disabled>Sto preparando la musica…</button><div class="hint">Tocca il pulsante e poi gira le pagine con uno swipe o con le frecce.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-01.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 1 · Il viaggio</div><div class="quote">Ogni viaggio cambia il paesaggio. Tu hai cambiato il significato del viaggio.</div><div class="note">Da Porto Cesareo in poi abbiamo capito che partire insieme significava tornare con una storia in più.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-02.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 2 · Il primo bacio</div><div class="quote">Da quel bacio sotto casa tua sono passati tredici anni. E sceglierei ancora quel momento.</div><div class="note">Alcuni inizi sembrano piccoli. Poi diventano una vita intera.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-03.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 3 · Casa</div><div class="quote">Casa è diventata anche questo: un posto qualsiasi, purché ci fossimo noi.</div><div class="note">Ci siamo portati dietro casa anche quando eravamo lontanissimi da casa.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-04.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 4 · Il tempo</div><div class="quote">Ci sono tramonti che finiscono. E poi ci sono quelli che diventano memoria.</div><div class="note">Se potessi fermare il tempo, sceglierei uno di quei minuti in cui non serviva dire niente.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-05.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 5 · Le cose normali</div><div class="quote">La nostra storia non è fatta solo di grandi giorni.</div><div class="note">È fatta di risate stupide, facce improbabili, serate normali e perfino di una pasta con le vongole capace di raccontarmi qualcosa di te.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-06.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 6 · Noi</div><div class="quote">Siamo cresciuti. Per fortuna non siamo diventati seri.</div><div class="note">E spero che questa parte di noi non cambi mai.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-07.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 7 · Insieme</div><div class="quote">“Invecchiare insieme” suona bene. Ma vivere insieme suona ancora meglio.</div><div class="note">Un giorno alla volta, senza saltare le pagine.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-08.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 8 · Memoria</div><div class="quote">Non ricordo ogni dettaglio di questi tredici anni. Ricordo come mi sono sentito.</div><div class="note">E in tantissimi di quei ricordi, ci sei tu.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-09.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 9 · Le nostre follie</div><div class="quote">La vita corre. Noi, ogni tanto, prendiamo uno scooter.</div><div class="note">E continuiamo ad aggiungere posti, storie e piccole follie alla nostra mappa.</div></div></div></section>
-<section class="page"><div class="pageContent"><img class="photo" src="memory-10.jpg" alt=""><div class="shade"></div><div class="copy"><div class="eyebrow">Pagina 10 · La scelta</div><div class="quote">Non voglio una storia perfetta. Voglio ancora la nostra.</div><div class="note">Con tutti i chilometri già fatti e quelli che non sappiamo ancora di voler fare.</div></div></div></section>
-<section class="page"><div class="pageContent special"><div class="specialInner"><div class="eyebrow">Pagina 11 · I nostri inizi</div><h2>Piccole cose.<br>Enormi, per noi.</h2><div class="chips"><div class="chip">♥ Il primo bacio: sotto casa tua.</div><div class="chip">♡ Il primo regalo: una collanina a cuore da dividere.</div><div class="chip">✦ Il primo viaggio lungo: Porto Cesareo, Puglia.</div><div class="chip">♫ La nostra canzone: “Burattino” dei Two Fingerz.</div><div class="chip">🍝 Il tuo piatto del cuore: pasta con le vongole.</div></div></div></div></section>
-<section class="page"><div class="pageContent special storyPage"><div class="specialInner"><div class="eyebrow">Pagina 12 · Tredici anni</div><h2>Tredici anni non sono una promessa.</h2><p>Sono migliaia di scelte piccole, ripetute. Restare. Ridere. Litigare. Ripartire. Viaggiare. Aspettarsi. Ritrovarsi.</p><p class="bigQuote">“Tra tutte le storie possibili, continuerei a scegliere questa.”</p><p>E se questa è solo una pagina, allora spero che il libro sia ancora lunghissimo.</p></div></div></section>
-<section class="page"><div class="pageContent gift"><div class="eyebrow">Pagina 13 · Il regalo</div><h2>Per tutte le storie<br>che vorrai scegliere.</h2><p>Amo la nostra storia, ma voglio regalarti anche tutte quelle che vorrai ancora scoprire.</p><div class="ticket"><b>Una gift card per i tuoi prossimi libri 📚</b><span>Scegli tu cosa leggere. Questa volta, la prossima storia la scegli tu.</span></div><p style="margin-top:18px;font-family:Georgia,serif;font-size:clamp(1rem,4.1vw,1.18rem)">“Che la nostra storia abbia ancora abbastanza pagine bianche da sorprenderci.”</p><div style="color:#e5c77e;margin-top:8px">Buon 13° anniversario. ♥</div></div></section>
-</div><div class="swipeHint" id="swipeHint">sfoglia</div></div>
-</main>
-<footer class="controls"><button class="nav" id="prev" aria-label="Pagina precedente">‹</button><div class="progress"><b id="pageLabel">Copertina</b><span id="pageCount">0 / 13</span></div><button class="nav" id="next" aria-label="Pagina successiva">›</button></footer>
+  <header class="header">
+    <div class="brand">8 settembre 2013 · 8 settembre 2026</div>
+    <button class="music" id="musicBtn" type="button"><i class="dot"></i><span id="musicText">Burattino</span></button>
+  </header>
+
+  <main class="stage">
+    <div class="book-wrap">
+      <div id="book">
+        <section class="book-page" data-density="hard">
+          <div class="page-inner cover">
+            <div class="cover-inner">
+              <div class="eyebrow">Il nostro tredicesimo capitolo</div>
+              <h1>13 anni<br>di noi.</h1>
+              <p>Non un sito da scorrere.<br>Un libro da sfogliare, pagina dopo pagina.</p>
+              <button class="openBtn" id="openBtn" type="button">Apri il libro ♥</button>
+              <div class="hint">Trascina l’angolo della pagina, fai swipe oppure usa le frecce.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-01.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 1 · Il viaggio</div><div class="quote">Ogni viaggio cambia il paesaggio. Tu hai cambiato il significato del viaggio.</div><div class="note">Da Porto Cesareo in poi abbiamo capito che partire insieme significava tornare con una storia in più.</div></div></div></section>
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-02.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 2 · Il primo bacio</div><div class="quote">Da quel bacio sotto casa tua sono passati tredici anni. E sceglierei ancora quel momento.</div><div class="note">Alcuni inizi sembrano piccoli. Poi diventano una vita intera.</div></div></div></section>
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-03.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 3 · Casa</div><div class="quote">Casa è diventata anche questo: un posto qualsiasi, purché ci fossimo noi.</div><div class="note">Ci siamo portati dietro casa anche quando eravamo lontanissimi da casa.</div></div></div></section>
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-04.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 4 · Il tempo</div><div class="quote">Ci sono tramonti che finiscono. E poi ci sono quelli che diventano memoria.</div><div class="note">Se potessi fermare il tempo, sceglierei uno di quei minuti in cui non serviva dire niente.</div></div></div></section>
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-05.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 5 · Le cose normali</div><div class="quote">La nostra storia non è fatta solo di grandi giorni.</div><div class="note">È fatta di risate stupide, facce improbabili, serate normali e perfino di una pasta con le vongole capace di raccontarmi qualcosa di te.</div></div></div></section>
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-06.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 6 · Noi</div><div class="quote">Siamo cresciuti. Per fortuna non siamo diventati seri.</div><div class="note">E spero che questa parte di noi non cambi mai.</div></div></div></section>
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-07.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 7 · Insieme</div><div class="quote">“Invecchiare insieme” suona bene. Ma vivere insieme suona ancora meglio.</div><div class="note">Un giorno alla volta, senza saltare le pagine.</div></div></div></section>
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-08.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 8 · Memoria</div><div class="quote">Non ricordo ogni dettaglio di questi tredici anni. Ricordo come mi sono sentito.</div><div class="note">E in tantissimi di quei ricordi, ci sei tu.</div></div></div></section>
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-09.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 9 · Le nostre follie</div><div class="quote">La vita corre. Noi, ogni tanto, prendiamo uno scooter.</div><div class="note">E continuiamo ad aggiungere posti, storie e piccole follie alla nostra mappa.</div></div></div></section>
+        <section class="book-page"><div class="page-inner"><img class="photo" src="memory-10.jpg" alt=""><div class="photoShade"></div><div class="photoCopy"><div class="eyebrow">Pagina 10 · La scelta</div><div class="quote">Non voglio una storia perfetta. Voglio ancora la nostra.</div><div class="note">Con tutti i chilometri già fatti e quelli che non sappiamo ancora di voler fare.</div></div></div></section>
+
+        <section class="book-page"><div class="page-inner textPage"><div class="textInner"><div class="eyebrow">Pagina 11 · I nostri inizi</div><h2>Piccole cose.<br>Enormi, per noi.</h2><div class="memory-grid"><div class="memory-pill">♥ Il primo bacio: sotto casa tua.</div><div class="memory-pill">♡ Il primo regalo: una collanina a cuore da dividere.</div><div class="memory-pill">✦ Il primo viaggio lungo: Porto Cesareo, Puglia.</div><div class="memory-pill">♫ La nostra canzone: “Burattino” dei Two Fingerz.</div><div class="memory-pill">🍝 Il tuo piatto del cuore: pasta con le vongole.</div></div></div></div></section>
+
+        <section class="book-page"><div class="page-inner textPage"><div class="textInner"><div class="eyebrow">Pagina 12 · Tredici anni</div><h2>Tredici anni non sono una promessa.</h2><p>Sono migliaia di scelte piccole, ripetute. Restare. Ridere. Litigare. Ripartire. Viaggiare. Aspettarsi. Ritrovarsi.</p><p class="bigQuote">“Tra tutte le storie possibili, continuerei a scegliere questa.”</p><p>E se questa è solo una pagina, allora spero che il libro sia ancora lunghissimo.</p></div></div></section>
+
+        <section class="book-page" data-density="hard"><div class="page-inner gift"><div class="giftInner"><div class="eyebrow">Pagina 13 · Il regalo</div><h2>Per tutte le storie<br>che vorrai scegliere.</h2><p>Amo la nostra storia, ma voglio regalarti anche tutte quelle che vorrai ancora scoprire.</p><div class="ticket"><b>Una gift card per i tuoi prossimi libri 📚</b><span>Scegli tu cosa leggere. Questa volta, la prossima storia la scegli tu.</span></div><p style="font-family:Georgia,serif;font-size:1.05rem;margin-top:17px">“Che la nostra storia abbia ancora abbastanza pagine bianche da sorprenderci.”</p><div style="color:#e5ca86;margin-top:8px">Buon 13° anniversario. ♥</div></div></div></section>
+      </div>
+      <div class="cornerHint" id="cornerHint">trascina l’angolo</div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <button class="nav" id="prev" aria-label="Pagina precedente">‹</button>
+    <div class="progress"><b id="pageLabel">Copertina</b><span id="pageCount">0 / 13</span></div>
+    <button class="nav" id="next" aria-label="Pagina successiva">›</button>
+  </footer>
 </div>
-<div id="ytHost" class="ytHost"></div><div class="toast" id="toast"></div>
+
+<audio id="localAudio" preload="auto" loop playsinline></audio>
+<div id="ytHost"></div><div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 <script>
-const pages=[...document.querySelectorAll('.page')],prev=document.getElementById('prev'),next=document.getElementById('next'),label=document.getElementById('pageLabel'),count=document.getElementById('pageCount'),swipeHint=document.getElementById('swipeHint');
-let current=0,busy=false,startX=0,confettiDone=false;
-function render(){pages.forEach((p,i)=>{p.className='page'+(i===current?' current':'')});label.textContent=current===0?'Copertina':current===13?'Il regalo':'Pagina '+current;count.textContent=current+' / 13';prev.disabled=current===0;next.disabled=current===13;swipeHint.style.display=current===13?'none':'block';if(current===13&&!confettiDone){confettiDone=true;confetti()}}
-function goNext(){if(busy||current>=13)return;busy=true;const old=pages[current],incoming=pages[current+1];incoming.className='page incoming';old.className='page outgoing turnForward';setTimeout(()=>{current++;busy=false;render()},640)}
-function goPrev(){if(busy||current<=0)return;busy=true;const incoming=pages[current-1],old=pages[current];incoming.className='page outgoing turnBack';old.className='page incoming';setTimeout(()=>{current--;busy=false;render()},640)}
-next.onclick=goNext;prev.onclick=goPrev;
-document.addEventListener('touchstart',e=>{startX=e.changedTouches[0].clientX},{passive:true});document.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-startX;if(Math.abs(d)>48){d<0?goNext():goPrev()}},{passive:true});
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')goNext();if(e.key==='ArrowLeft')goPrev()});
-const toast=document.getElementById('toast');function say(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1700)}
-let musicReady=false,musicOn=false,player=null;const openBtn=document.getElementById('openBtn'),musicBtn=document.getElementById('musicBtn'),musicText=document.getElementById('musicText');
-window.onYouTubeIframeAPIReady=function(){player=new YT.Player('ytHost',{height:'2',width:'2',videoId:'yXXbKwNfymI',playerVars:{playsinline:1,controls:0,disablekb:1,fs:0,loop:1,playlist:'yXXbKwNfymI'},events:{onReady:()=>{musicReady=true;openBtn.disabled=false;openBtn.textContent='Apri il libro e fai partire la musica ♥';musicText.textContent='Burattino';},onStateChange:e=>{if(e.data===YT.PlayerState.PLAYING){musicOn=true;musicBtn.classList.add('on');musicText.textContent='Burattino'}else if(e.data===YT.PlayerState.PAUSED||e.data===YT.PlayerState.ENDED){musicOn=false;musicBtn.classList.remove('on')}}}})};
+const toast=document.getElementById('toast');
+function say(t){toast.textContent=t;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),1900)}
+
+const bookEl=document.getElementById('book');
+const pageFlip=new St.PageFlip(bookEl,{
+  width:360,height:540,size:'stretch',minWidth:280,maxWidth:430,minHeight:420,maxHeight:650,
+  maxShadowOpacity:.45,showCover:true,mobileScrollSupport:false,usePortrait:true,autoSize:true,
+  flippingTime:820,drawShadow:true,clickEventForward:true
+});
+pageFlip.loadFromHtml(document.querySelectorAll('.book-page'));
+
+const prev=document.getElementById('prev'),next=document.getElementById('next'),label=document.getElementById('pageLabel'),count=document.getElementById('pageCount'),cornerHint=document.getElementById('cornerHint');
+let confettiDone=false;
+function updateUI(page){
+  const p=Number(page||0);label.textContent=p===0?'Copertina':p===13?'Il regalo':'Pagina '+p;count.textContent=p+' / 13';prev.disabled=p===0;next.disabled=p===13;cornerHint.style.display=p===13?'none':'block';if(p===13&&!confettiDone){confettiDone=true;confetti()}
+}
+pageFlip.on('flip',e=>updateUI(e.data));
+prev.onclick=()=>pageFlip.flipPrev();next.onclick=()=>pageFlip.flipNext();
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')pageFlip.flipNext();if(e.key==='ArrowLeft')pageFlip.flipPrev()});
+
+const musicBtn=document.getElementById('musicBtn'),musicText=document.getElementById('musicText'),openBtn=document.getElementById('openBtn'),audio=document.getElementById('localAudio');
+let musicMode='youtube',musicOn=false,ytPlayer=null,ytReady=false;
+async function detectLocalAudio(){
+  for(const src of ['burattino.m4a','burattino.mp3']){
+    try{const r=await fetch(src,{method:'HEAD',cache:'no-store'});if(r.ok){audio.src=src;musicMode='local';musicText.textContent='Burattino';return}}catch(e){}
+  }
+}
+detectLocalAudio();
+
+function setMusicState(on){musicOn=on;musicBtn.classList.toggle('on',on);musicText.textContent=on?(musicMode==='local'?'Burattino · in riproduzione':'Burattino · YouTube'):'Burattino'}
+async function startMusic(){
+  if(musicMode==='local'){
+    try{await audio.play();setMusicState(true)}catch(e){say('Tocca di nuovo Burattino per avviare l’audio')}
+  }else{
+    if(ytReady&&ytPlayer){try{ytPlayer.playVideo();setMusicState(true)}catch(e){say('Tocca di nuovo Burattino')}}else{say('La musica si sta preparando…')}
+  }
+}
+function pauseMusic(){if(musicMode==='local'){audio.pause()}else if(ytReady&&ytPlayer){ytPlayer.pauseVideo()}setMusicState(false)}
+musicBtn.onclick=()=>musicOn?pauseMusic():startMusic();
+openBtn.onclick=()=>{startMusic();setTimeout(()=>pageFlip.flipNext(),120)};
+
+window.onYouTubeIframeAPIReady=function(){
+  ytPlayer=new YT.Player('ytHost',{height:'2',width:'2',videoId:'yXXbKwNfymI',playerVars:{playsinline:1,controls:0,rel:0,loop:1,playlist:'yXXbKwNfymI'},events:{onReady:()=>{ytReady=true}}});
+};
 const ytApi=document.createElement('script');ytApi.src='https://www.youtube.com/iframe_api';document.head.appendChild(ytApi);
-function playMusic(){if(!musicReady||!player){say('La musica si sta ancora caricando…');return false}try{player.unMute();player.setVolume(100);player.playVideo();setTimeout(()=>{if(player.getPlayerState()!==YT.PlayerState.PLAYING){player.playVideo()}},250);return true}catch(e){say('Tocca di nuovo per avviare la musica');return false}}
-openBtn.onclick=()=>{playMusic();goNext()};musicBtn.onclick=()=>{if(!musicReady)return;if(musicOn){player.pauseVideo()}else{playMusic()}};
-function confetti(){const c=['#c58fa3','#e5c77e','#fff8ef'];for(let i=0;i<46;i++){const x=document.createElement('i');x.className='confetti';x.style.left=Math.random()*100+'vw';x.style.background=c[i%3];x.style.setProperty('--dx',(Math.random()*180-90)+'px');x.style.animationDuration=(2.5+Math.random()*2.3)+'s';document.body.appendChild(x);setTimeout(()=>x.remove(),5200)}}
-render();
+
+function confetti(){const c=['#d39aaa','#e7cc89','#fff8ef'];for(let i=0;i<48;i++){const x=document.createElement('i');x.className='confetti';x.style.left=Math.random()*100+'vw';x.style.background=c[i%3];x.style.setProperty('--dx',(Math.random()*200-100)+'px');x.style.animationDuration=(2.5+Math.random()*2.4)+'s';document.body.appendChild(x);setTimeout(()=>x.remove(),5400)}}
+updateUI(0);
 </script>
 </body>
 </html>
